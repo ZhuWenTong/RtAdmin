@@ -1,11 +1,11 @@
 import React from 'react'
 
 export default class App extends React.Component {
-    render () {
+	render () {
 		return (
 			<div className="App">
-			  	{this.props.children}
+				{this.props.children}
 			</div>
-	  	)
+			)
 	}
 }

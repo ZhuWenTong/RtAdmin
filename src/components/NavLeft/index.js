@@ -17,7 +17,7 @@ class NavLeft extends React.Component {
     state = {
         currentKey: ''
     }
-    componentWillMount () {
+    componentDidMount () {
         const menuTreeNode = this.renderMenu(menuList)
         let currentKey = window.location.hash.replace(/#|\?.*$/g, '')
         let menuName = localStorage.getItem('menuName') || '首页'
@@ -31,26 +31,33 @@ class NavLeft extends React.Component {
     handleSelectMenu ({item, key}) {
         const { dispatch } = this.props
         let title = item.props.title
-        window.localStorage.setItem('menuName', title)
+        // window.localStorage.setItem('menuName', title)
         dispatch(switchMenu(title))
         this.setState({
             currentKey: key
         })
+    }
+    // 菜单名称
+    renderTitle = (i) => {
+        if (i.icon) {
+            return (<span><Icon type={i.icon} />{i.title}</span>)
+        } else {
+            return (<span>{i.title}</span>)
+        }
     }
     // 菜单渲染
     renderMenu (data) {
         return data.map(i => {
             if (i.children) {
                 return (
-                    <SubMenu title={
-                        <span><Icon type={i.icon} />{i.title}</span>} key={i.key}>
+                    <SubMenu title={this.renderTitle(i)} key={i.key}>
                         {this.renderMenu(i.children)}
                     </SubMenu>
                 )
             }
             return (
             <Menu.Item title={i.title} key={i.key}>
-                <NavLink to={i.key}><Icon type={i.icon} />{i.title}</NavLink>
+                <NavLink to={i.key}>{this.renderTitle(i)}</NavLink>
             </Menu.Item>
             )
         })
@@ -59,7 +66,7 @@ class NavLeft extends React.Component {
         return (
             <div>
                 <div className="logo">
-                    <img src="/assets/logo-ant.svg" />
+                    <img src="/assets/logo-ant.svg" alt="" />
                     <h1>zwt-admin</h1>
                 </div>
                 <Menu mode="vertical" theme="dark" selectedKeys={[this.state.currentKey]} onClick={this.handleSelectMenu}>

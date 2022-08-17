@@ -1,22 +1,27 @@
 import React from 'react'
 import { Row, Col } from 'antd'
 import './index.less'
-import Utils from '../../utils/utils'
+// import Utils from '../../utils/utils'
 import axios from '../../axios'
 import { connect } from 'react-redux'
 
 class Header extends React.Component {
-    componentWillMount () {
+    // state = {
+    //     userName: 'zwt'
+    // }
+    UNSAFE_componentWillMount () {
         this.setState({
             userName: 'zwt'
         })
-        setInterval(() => {
-            let sysTime = Utils.formatDate(new Date())
-            this.setState({
-                sysTime
-            })
-        }, 1000)
-        this.getWeatherApiData()
+    }
+    componentDidMount () {
+        // setInterval(() => {
+        //     let sysTime = Utils.formatDate(new Date())
+        //     this.setState({
+        //         sysTime
+        //     })
+        // }, 1000)
+        // this.getWeatherApiData()
     }
     getWeatherApiData () {
         let city = '深圳'
@@ -45,22 +50,22 @@ class Header extends React.Component {
                     <Col span={4} className="breadcrumb-title">
                         {this.props.menuName}
                     </Col>
-                    <Col span={20} className="weather">
+                    {/* <Col span={20} className="weather">
                         <span className="date">{this.state.sysTime}</span>
                         <span className="weather-img">
-                            <img src={this.state.dayPicture} />
+                            <img src={this.state.dayPicture} alt="" />
                         </span>
                         <span className="weather-detail">{this.state.weather}</span>
-                    </Col>
+                    </Col> */}
                 </Row>
             </div>
         )
     }
 }
 const mapStateToProps = state => {
-    console.log('--------------', state)
+    // console.log('--------------', state)
     return {
-        menuName: state.menuName
+        menuName: state.menuReducer.menuName
     }
 }
 export default connect(mapStateToProps)(Header)
