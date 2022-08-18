@@ -12,8 +12,7 @@ class right extends Component {
   }
   changeText = () => {
     console.log(this.props)
-    this.props.actions('Hello Redux')
-    // this.props.actions.changeReduxText('改变他')
+    this.props.actions.changeReduxText('Hello Redux')
   }
   render () {
     return (
@@ -35,7 +34,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(changeReduxText, dispatch)
+    actions: {
+      changeReduxText: bindActionCreators(changeReduxText, dispatch)
+    }
   }
 }
 

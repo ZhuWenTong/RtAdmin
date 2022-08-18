@@ -5,7 +5,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 
 import './index.less'
 
-export default function Loading () {
+const Loading = () => {
   const [listData, setCityList] = useState([])
   const [cityName, setCityName] = useState('')
 
@@ -65,3 +65,5 @@ export default function Loading () {
     </div>
   )
 }
+
+export default Loading
