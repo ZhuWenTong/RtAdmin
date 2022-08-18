@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { Card, Button } from 'antd'
 
-import {changeReduxText}  from '../../../redux/action/index'
+import {changeReduxText, switchMenu}  from '../../../redux/action/index'
 
 class left extends Component {
   state = {
@@ -13,6 +13,7 @@ class left extends Component {
   changeText = () => {
     console.log(this.props)
     this.props.actions.changeReduxText('改变他')
+    // this.props.dispatch(changeReduxText('test')) // 不可使用映射
   }
   render () {
     return (
@@ -25,18 +26,20 @@ class left extends Component {
     )
   }
 }
-
+// 将redux state映射到props
 const mapStateToProps = state => {
   // console.log(state)
   return {
-    reduxText: state.demoReducer.reduxText
+    reduxText: state.demoReducer.reduxText,
+    menuName: state.menuReducer.menuName
   }
 }
-
+// 将redux中actions方法映射到props
 const mapDispatchToProps = dispatch => {
   return {
     actions: {
-      changeReduxText: bindActionCreators(changeReduxText, dispatch)
+      changeReduxText: bindActionCreators(changeReduxText, dispatch),
+      switchMenu: bindActionCreators(switchMenu, dispatch)
     }
   }
 }
