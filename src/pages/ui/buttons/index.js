@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
 import { switchMenu } from '../../../redux/action'
 
-import { Button, Input } from 'antd'
+import { Button, Input, Card, Row, Col } from 'antd'
 import Child from './child'
 
 class Buttons extends Component {
@@ -62,19 +62,35 @@ class Buttons extends Component {
     render () {
         return (
             <div>
-                <Button type="primary" onClick={this.toModal}>跳转弹框页</Button>
-                <Button type="primary" onClick={this.toModal2}>跳转弹框页2</Button>
-                <Button onClick={this.handleShowChild}>{this.state.flag ? '隐藏' : '显示'}</Button>
-                <Button onClick={this.getRefInfo}>获取ref</Button>
-                <>
-                    {/* {this.renderChild()} */}
-                    {this.state.flag ? <Child {...this.state} /> : <div>213</div>}
-                </>
-                {/* <Child {...this.state} /> */}
-                {/* <Child itemData={this.state.itemData} name={this.state.name} /> */}
-                <div>
-                <Input value={this.state.inputVal} ref={this.inputElem} style={{width: '300px'}} onChange={e => this.setInputVal(e.target.value)}/>
-                </div>
+                <Row gutter={16}>
+                    <Col span={6}>
+                        <Card title="search参数">
+                            <Button type="primary" onClick={this.toModal}>跳转弹框页</Button>
+                        </Card>
+                    </Col>
+                    <Col span={6}>
+                        <Card title="state参数">
+                            <Button type="primary" onClick={this.toModal2}>跳转弹框页2</Button>
+                        </Card>
+                    </Col>
+                    <Col span={6}>
+                        <Card title="dom显隐">
+                            <Button onClick={this.handleShowChild}>{this.state.flag ? '隐藏' : '显示'}</Button>
+                            <>
+                                {/* {this.renderChild()} */}
+                                {this.state.flag ? <Child {...this.state} /> : <div>213</div>}
+                            </>
+                        </Card>
+                    </Col>
+                    <Col span={6}>
+                        <Card title="获取ref">
+                            <Button onClick={this.getRefInfo}>获取ref</Button>
+                            <div>
+                            <Input value={this.state.inputVal} ref={this.inputElem} style={{width: '300px'}} onChange={e => this.setInputVal(e.target.value)}/>
+                            </div>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         )
     }

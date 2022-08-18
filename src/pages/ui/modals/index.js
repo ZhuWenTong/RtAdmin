@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Row, Col, Card } from 'antd'
+
 import TodoList from './todolist'
 
 class modals extends Component {
@@ -16,7 +18,13 @@ class modals extends Component {
   render () {
     return (
       <div>
-        <TodoList />
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card title="TodoList">
+              <TodoList />
+            </Card>
+          </Col>
+        </Row>
       </div>
     )
   }

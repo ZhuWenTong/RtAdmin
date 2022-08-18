@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 
-import { Input, Button, message } from 'antd'
+import { Input, Button, message, Row, Col, Card } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 
 import './index.less'
@@ -49,13 +49,19 @@ export default function Loading () {
 
   return (
     <div className="loading-page">
-      <div className="wrap-list">
-        <Input.Group compact className="add-act">
-          <Input style={{width: '400px'}} value={cityName} onChange={e => setCityName(e.target.value)} />
-          <Button type="primary" onClick={addItem}>新增</Button>
-        </Input.Group>
-        <Fragment>{renderList()}</Fragment>
-      </div>
+      <Row gutter={16}>
+        <Col span={8}>
+          <Card title="TodoList">
+            <div className="wrap-list">
+              <Input.Group compact className="add-act">
+                <Input style={{width: '400px'}} value={cityName} onChange={e => setCityName(e.target.value)} />
+                <Button type="primary" onClick={addItem}>新增</Button>
+              </Input.Group>
+              <Fragment>{renderList()}</Fragment>
+            </div>
+          </Card>
+        </Col>
+      </Row>
     </div>
   )
 }
