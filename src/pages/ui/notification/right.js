@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 
-import { Card } from 'antd'
+import { Card, Input } from 'antd'
 
 class right extends Component {
+  setContent = (value) => {
+    this.props.changeContent(value)
+  }
   render () {
     const {content} = this.props
     return (
       <div>
         <Card title="right">
-          <p>来自组件Left： {content}</p>
+          <Input value={content} onChange={e => this.setContent(e.target.value)} />
         </Card>
       </div>
     )

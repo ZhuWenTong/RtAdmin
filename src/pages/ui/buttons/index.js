@@ -4,6 +4,10 @@ import { switchMenu } from '../../../redux/action'
 
 import { Button, Input, Card, Row, Col } from 'antd'
 import Child from './child'
+import DefaultSlot from './defaultSlot'
+import NameSlot from './nameSlot/index'
+import Content from './nameSlot/content'
+import Top from './nameSlot/top'
 
 class Buttons extends Component {
     constructor () {
@@ -88,6 +92,21 @@ class Buttons extends Component {
                             <div>
                             <Input value={this.state.inputVal} ref={this.inputElem} style={{width: '300px'}} onChange={e => this.setInputVal(e.target.value)}/>
                             </div>
+                        </Card>
+                    </Col>
+                    <Col span={6}>
+                        <Card title="Slot">
+                            <DefaultSlot>
+                                <p>默认Slot</p>
+                                <p>千里之行，始于足下。——老子</p>
+                            </DefaultSlot>
+                        </Card>
+                    </Col>
+                    <Col span={6}>
+                        <Card title="具名slot">
+                            <NameSlot header={<Top />} content={<Content />} footer={<div>Footer</div>}>
+
+                            </NameSlot>
                         </Card>
                     </Col>
                 </Row>
