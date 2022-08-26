@@ -19,7 +19,9 @@ class Buttons extends Component {
             inputVal: ''
         }
         this.inputElem = createRef()
+        // this.childElem = createRef()
     }
+    childElem = createRef()
     toModal = () => {
         console.log(this.props)
         const { history, dispatch } = this.props
@@ -55,8 +57,9 @@ class Buttons extends Component {
         }
     }
     getRefInfo = () => {
-        console.log(this.inputElem.current)
+        console.log(this.inputElem)
         this.inputElem.current.focus()
+        console.log(this.childElem)
     }
     setInputVal = (value) => {
         this.setState({
@@ -82,7 +85,7 @@ class Buttons extends Component {
                             <Button onClick={this.handleShowChild}>{this.state.flag ? '隐藏' : '显示'}</Button>
                             <>
                                 {/* {this.renderChild()} */}
-                                {this.state.flag ? <Child {...this.state} /> : <div>213</div>}
+                                {this.state.flag ? <Child ref={this.childElem} {...this.state} /> : <div>213</div>}
                             </>
                         </Card>
                     </Col>

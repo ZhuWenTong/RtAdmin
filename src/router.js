@@ -14,6 +14,8 @@ import Messages from './pages/ui/messages'
 import Tabs from './pages/ui/tabs'
 import Gallery from './pages/ui/gallery'
 import Carousel from './pages/ui/carousel'
+import LoginForm from './pages/form/login'
+import RegisterForm from './pages/form/register'
 
 export default class myRouter extends Component {
     render () {
@@ -33,6 +35,8 @@ export default class myRouter extends Component {
                                     <Route path="/admin/ui/tabs" component={Tabs}></Route>
                                     <Route path="/admin/ui/gallery" component={Gallery}></Route>
                                     <Route path="/admin/ui/carousel" component={Carousel}></Route>
+                                    <Route path="/admin/form/login" component={LoginForm}></Route>
+                                    <Route path="/admin/form/reg" component={RegisterForm}></Route>
                                     <Route component={NoMatch}></Route>
                                 </Switch>
                             </Admin>
