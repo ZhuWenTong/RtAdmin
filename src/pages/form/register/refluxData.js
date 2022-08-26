@@ -5,6 +5,8 @@ import ReactMixin from 'react-mixin'
 import todoListStore from '../../../reflux/todoList/store'
 import todoAction from '../../../reflux/todoList/action'
 
+import { Empty } from 'antd'
+
 import TodoItem from '../login/todoItem'
 
 class RefluxData extends Component {
@@ -18,11 +20,11 @@ class RefluxData extends Component {
   }
   renderList = () => {
     let { listData } = this.state.todoStore
-    return listData.map((i, index) => {
+    return listData.length ? listData.map((i, index) => {
       return (
         <TodoItem key={index} itemData={i} />
       )
-    })
+    }) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
   }
   render () {
     return (

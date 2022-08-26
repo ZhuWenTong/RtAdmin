@@ -5,7 +5,7 @@ import ReactMixin from 'react-mixin'
 import todoListStore from '../../../reflux/todoList/store'
 import todoListAction from '../../../reflux/todoList/action'
 
-import { Button, Input } from 'antd'
+import { Button, Input, message } from 'antd'
 import TodoItem from './todoItem'
 
 class TodoList extends Component {
@@ -25,6 +25,10 @@ class TodoList extends Component {
   }
   addItem = () => {
     let { content } = this.state
+    if (!content) {
+      message.warning('请输入内容')
+      return
+    }
     todoListAction.addItem({
       content
     })
