@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { Modal } from 'antd'
 import  './todoItem.less'
 
 class TodoItem extends Component {
@@ -7,8 +8,17 @@ class TodoItem extends Component {
     showDel: false
   }
   deleteItem = () => {
-    let { index, handleDel } = this.props
-    handleDel(index)
+    let { index, handleDel, itemData } = this.props
+    Modal.confirm({
+      title: '提示',
+      icon: <ExclamationCircleOutlined />,
+      content: `确定要删除[${itemData.content}]吗`,
+      okText: '确定',
+      cancelText: '取消',
+      onOk: () => handleDel(index),
+      onCancel: () => {}
+    })
+    // handleDel(index)
   }
   render () {
     let { itemData } = this.props

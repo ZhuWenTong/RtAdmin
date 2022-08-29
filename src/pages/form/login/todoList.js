@@ -24,9 +24,14 @@ class TodoList extends Component {
     })
   }
   addItem = () => {
-    let { content } = this.state
+    let { content, todoStore } = this.state
     if (!content) {
       message.warning('请输入内容')
+      return
+    }
+    let idx = todoStore.listData.findIndex(i => i.content === content)
+    if (idx !== -1) {
+      message.warning(`TodoList中已存在[${content}]，请勿重复添加！`)
       return
     }
     todoListAction.addItem({
